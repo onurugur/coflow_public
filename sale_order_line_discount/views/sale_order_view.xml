@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.discount</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook//field[@name='order_line']/tree/field[@name='discount']" position="after">
+                    <field name="unit_discounted" readonly="1" widget="monetary"/>
+                    <button help="Update" title="Discount" icon="fa-cut" invisible="parent.state not in ['draft', 'sent']" name="%(action_update_discount)d" type="action"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook//field[@name='order_line']//form//field[@name='price_unit']" position="after">
+                    <field name="unit_discounted" readonly="1" widget="monetary"/>
+                </xpath></field>
+        </record>
+
+
+        <record id="view_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.discount</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="after">
+                    <field name="unit_discounted" readonly="1" widget="monetary"/>
+                    <button help="Update" title="Discount" icon="fa-cut" invisible="parent.state not in ['done', 'cancel']" name="%(action_update_discount)d" type="action"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook//field[@name='invoice_line_ids']//form//field[@name='price_unit']" position="after">
+                    <field name="unit_discounted" readonly="1" widget="monetary"/>
+                </xpath></field>
+        </record>
+    </data>
+</odoo>

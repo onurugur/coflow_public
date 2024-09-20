@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_update_discount,update.discount,model_update_discount,,1,1,1,1
+access_invoice_update_discount,invoice.update.discount,model_invoice_update_discount,,1,1,1,1
+
