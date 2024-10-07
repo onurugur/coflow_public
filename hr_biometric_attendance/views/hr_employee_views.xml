@@ -22,4 +22,16 @@
             </xpath>
         </field>
     </record>
+
+
+    <record id="view_attendance_tree_calendar" model="ir.ui.view">
+        <field name="name">hr.attendance.view.tree.ent.hr.zk.attendance</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='color']" position="after">
+                <field name="calendar_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>

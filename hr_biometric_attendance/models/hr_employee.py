@@ -46,3 +46,11 @@ class HrEmployee(models.Model):
             'res_model': 'employee.biometric',
             'context': {'default_employee_id': self.id},
         }
+
+
+class HrAttandance(models.Model):
+    _inherit='hr.attendance'
+
+    calendar_id = fields.Many2one(related='employee_id.resource_calendar_id',store=True)
+
+
