@@ -52,5 +52,13 @@ class HrAttandance(models.Model):
     _inherit='hr.attendance'
 
     calendar_id = fields.Many2one(related='employee_id.resource_calendar_id',store=True)
+    date_start_employee = fields.Float('Date Start Vardiya',related='employee_id.resource_calendar_id.date_start_employee',store=True)
+    date_end_employee = fields.Float('Date End Vardiya',related='employee_id.resource_calendar_id.date_end_employee',store=True)
+class ResourceCalendar(models.Model):
+    _inherit='resource.calendar'
+
+
+    date_start_employee = fields.Float('Day Start')
+    date_end_employee = fields.Float('Day End')
 
 
