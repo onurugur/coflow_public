@@ -31,8 +31,8 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='color']" position="after">
                 <field name="calendar_id" optional="hide"/>
-                <field name="date_start_employee" optional="hide"/>
-                <field name="date_end_employee" optional="hide"/>
+                <field name="date_start_employee" widget="float_time" optional="hide"/>
+                <field name="date_end_employee" widget="float_time" optional="hide"/>
             </xpath>
         </field>
     </record>
