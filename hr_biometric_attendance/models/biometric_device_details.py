@@ -252,6 +252,22 @@ class BiometricDeviceDetails(models.Model):
                                                     att_var1[-1].write({
                                                         'check_out': atten_time
                                                     })
+                                    else:
+                                        att_var = hr_attendance.search([(
+                                            'employee_id', '=', get_user_id.id),
+                                            ('check_out', '=', False)])
+                                        if len(att_var) == 1:
+                                            att_var.write({
+                                                'check_out': atten_time
+                                            })
+                                        else:
+                                            att_var1 = hr_attendance.search(
+                                                [('employee_id', '=',
+                                                  get_user_id.id)])
+                                            if att_var1:
+                                                att_var1[-1].write({
+                                                    'check_out': atten_time
+                                                })
                                 else:
                                     employee = self.env['hr.employee'].create({
                                         'device_id_num': each.user_id,
