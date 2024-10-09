@@ -257,7 +257,7 @@ class BiometricDeviceDetails(models.Model):
                                             'employee_id', '=', get_user_id.id),
                                             ('check_out', '=', False)])
                                         if len(att_var) == 1:
-                                            if atten_time > att_var.check_in:
+                                            if utc_dt > att_var.check_in:
                                                 att_var.write({
                                                     'check_out': atten_time
                                                 })
@@ -266,7 +266,7 @@ class BiometricDeviceDetails(models.Model):
                                                 [('employee_id', '=',
                                                   get_user_id.id)])
                                             if att_var1:
-                                                if att_var1[-1].check_in > atten_time:
+                                                if utc_dt > att_var1[-1].check_in :
                                                     att_var1[-1].write({
                                                         'check_out': atten_time
                                                     })
