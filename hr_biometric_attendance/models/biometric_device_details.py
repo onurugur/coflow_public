@@ -211,6 +211,8 @@ class BiometricDeviceDetails(models.Model):
                         utc_dt = utc_dt.strftime("%Y-%m-%d %H:%M:%S")
                         atten_time = datetime.datetime.strptime(
                             utc_dt, "%Y-%m-%d %H:%M:%S")
+                        atten_time_date = datetime.datetime.strptime(
+                            utc_dt, "%Y-%m-%d %H:%M:%S")
                         atten_time = fields.Datetime.to_string(atten_time)
                         for uid in user:
                             if uid.user_id == each.user_id:
@@ -257,7 +259,7 @@ class BiometricDeviceDetails(models.Model):
                                             'employee_id', '=', get_user_id.id),
                                             ('check_out', '=', False)])
                                         if len(att_var) == 1:
-                                            if utc_dt > att_var.check_in:
+                                            if atten_time_date > att_var.check_in:
                                                 att_var.write({
                                                     'check_out': atten_time
                                                 })
@@ -266,7 +268,7 @@ class BiometricDeviceDetails(models.Model):
                                                 [('employee_id', '=',
                                                   get_user_id.id)])
                                             if att_var1:
-                                                if utc_dt > att_var1[-1].check_in :
+                                                if atten_time_date > att_var1[-1].check_in:
                                                     att_var1[-1].write({
                                                         'check_out': atten_time
                                                     })
