@@ -39,8 +39,6 @@
     'assets': {
         'web.assets_backend': [
             'hr_attendance_xlsx_report/static/src/js/action_manager.js',
-                        'hr_attendance_xlsx_report/js/action_manager.js',
-
         ]
     },
     'images': ['static/description/banner.jpg'],
