@@ -231,47 +231,6 @@ class BiometricDeviceDetails(models.Model):
                                             'punching_time': atten_time,
                                             'address_id': info.address_id.id
                                         })
-                                        att_var = hr_attendance.search([(
-                                            'employee_id', '=', get_user_id.id),
-                                            ('check_out', '=', False)])
-                                        if each.punch == 0:  # check-in
-                                            if not att_var:
-                                                hr_attendance.create({
-                                                    'employee_id':
-                                                        get_user_id.id,
-                                                    'check_in': atten_time
-                                                })
-                                        if each.punch == 1:  # check-out
-                                            if len(att_var) == 1:
-                                                att_var.write({
-                                                    'check_out': atten_time
-                                                })
-                                            else:
-                                                att_var1 = hr_attendance.search(
-                                                    [('employee_id', '=',
-                                                      get_user_id.id)])
-                                                if att_var1:
-                                                    att_var1[-1].write({
-                                                        'check_out': atten_time
-                                                    })
-                                    else:
-                                        att_var = hr_attendance.search([(
-                                            'employee_id', '=', get_user_id.id),
-                                            ('check_out', '=', False)])
-                                        if len(att_var) == 1:
-                                            if atten_time_date > att_var.check_in:
-                                                att_var.write({
-                                                    'check_out': atten_time
-                                                })
-                                        else:
-                                            att_var1 = hr_attendance.search(
-                                                [('employee_id', '=',
-                                                  get_user_id.id)])
-                                            if att_var1:
-                                                if atten_time_date > att_var1[-1].check_in:
-                                                    att_var1[-1].write({
-                                                        'check_out': atten_time
-                                                    })
                                 else:
                                     employee = self.env['hr.employee'].create({
                                         'device_id_num': each.user_id,
@@ -285,10 +244,6 @@ class BiometricDeviceDetails(models.Model):
                                         'punch_type': str(each.punch),
                                         'punching_time': atten_time,
                                         'address_id': info.address_id.id
-                                    })
-                                    hr_attendance.create({
-                                        'employee_id': employee.id,
-                                        'check_in': atten_time
                                     })
                     if not self.is_live_capture:
                         current_time = fields.datetime.now().strftime(
